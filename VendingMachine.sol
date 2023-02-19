@@ -37,13 +37,13 @@ function restock(uint amount) public
 
 // Function to purchase donuts from the vending machine
 function purchase (uint amount) public payable{
-    // Require the msg.value to be at least 3 ether per donut
-    require(msg.value >= amount * 3 ether, "You must pay at least 3 ether per donut");
+    // Require the msg.value to be at least 2 ether per donut
+    require(msg.value >= amount * 2 ether, "You must pay at least 2 ether per donut");
     // Require the vending machine to have enough donuts in stock to fulfill purchase request
     require(donutBalances[address(this)] >= amount, "Not enough donuts in stock to fulfill purchase request");
-   
+    // Decrease the donut balance of the vending machine by the purchase amount
     donutBalances[address(this)] -= amount;
-    
+    // Increase the donut balance of the purchasing address by the purchase amount
     donutBalances[msg.sender] += amount;
 }
 
